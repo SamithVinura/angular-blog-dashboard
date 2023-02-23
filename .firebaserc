@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-blog-app-cdd08": {
+      "hosting": {
+        "angular-blog-dashboard": [
+          "angular-blog-app-cdd08"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-blog-app-cdd08"
+  }
+}
