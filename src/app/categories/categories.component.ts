@@ -16,9 +16,12 @@ export class CategoriesComponent implements OnInit {
   ngOnInit():void{}
 
   onSubmit(formData:any){
-    let categoryData = {
+    /* let categoryData = {
       category:formData.value
     }
+ */
+
+
     const collectionIns = collection(this.firestore, 'categories')
     addDoc(collectionIns,formData.value)
     .then((docRef)=>{console.log(docRef)})
