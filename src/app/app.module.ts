@@ -11,6 +11,7 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {provideFirestore,getFirestore} from '@angular/fire/firestore';
 import { CategoriesComponent } from './categories/categories.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CategoriesComponent } from './categories/categories.component'
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    provideFirestore(()=>getFirestore())
+    provideFirestore(()=>getFirestore()),
+    FormsModule
 
   ],
   providers: [],
