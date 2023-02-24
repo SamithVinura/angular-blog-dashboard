@@ -11,13 +11,19 @@ import { CategoriesService } from '../services/categories.service';
 })
 export class CategoriesComponent implements OnInit {
 
+public categoryArray!:any
 
   constructor(private categoriesService:CategoriesService){}
 
-  ngOnInit():void{}
+  ngOnInit():void{
+
+   this.categoryArray = this.categoriesService.loadData()
+  }
 
   onSubmit(formData:any){
     const category:Category = formData.value
     this.categoriesService.saveData(category)
+    formData.reset()
   }
+
 }

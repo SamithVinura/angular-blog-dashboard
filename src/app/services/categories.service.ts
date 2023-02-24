@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc,collectionData } from '@angular/fire/firestore';
 import { Category } from '../models/category';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,4 +19,11 @@ export class CategoriesService {
         console.log('error');
       });
   }
+
+  loadData(){
+    const collectionIns = collection(this.firestore, 'categories');
+    return collectionData(collectionIns)
+  }
+
+
 }
