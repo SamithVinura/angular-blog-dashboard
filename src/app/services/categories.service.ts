@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc,collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc,collectionData,doc,updateDoc } from '@angular/fire/firestore';
 import { Category } from '../models/category';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,7 +22,19 @@ export class CategoriesService {
 
   loadData(){
     const collectionIns = collection(this.firestore, 'categories');
-    return collectionData(collectionIns)
+    return collectionData(collectionIns,{idField:'id'})
+  }
+
+  updateData(id:string,updateData:any){
+    const docIns = doc(this.firestore,'categories',id)
+    updateDoc(docIns,updateData)
+    .then((docRef) => {
+      this.toaster.success('Data Edited Successfully')
+    })
+    .catch((err) => {
+      console.log('error');
+    });
+
   }
 
 
