@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Firestore,collection,addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { Category } from '../models/category';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriesService {
+  constructor(private firestore: Firestore,private toaster:ToastrService) {}
 
-  constructor(private firestore:Firestore) { }
-
-  saveData(data:Category){
-    const collectionIns = collection(this.firestore, 'categories')
-    addDoc(collectionIns,data)
-    .then((docRef)=>{console.log(docRef)})
-    .catch(err=>{console.log("error")})
+  saveData(data: Category) {
+    const collectionIns = collection(this.firestore, 'categories');
+    addDoc(collectionIns, data)
+      .then((docRef) => {
+        this.toaster.success('Data Insert Successfully')
+      })
+      .catch((err) => {
+        console.log('error');
+      });
   }
 }
