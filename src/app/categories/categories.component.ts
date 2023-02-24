@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CategoriesService } from '../services/categories.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -28,7 +27,8 @@ export class CategoriesComponent implements OnInit {
       formData.reset();
     } else if ((this.formStatus = 'Edit')) {
       this.categoriesService.updateData(this.categoryId,formData.value)
-
+      formData.reset();
+      this.formStatus = 'Add';
     }
   }
 
@@ -36,5 +36,9 @@ export class CategoriesComponent implements OnInit {
     this.formCategory = category;
     this.categoryId = id;
     this.formStatus = 'Edit';
+  }
+
+  onDelete(id:string){
+    this.categoriesService.deleteData(id)
   }
 }
