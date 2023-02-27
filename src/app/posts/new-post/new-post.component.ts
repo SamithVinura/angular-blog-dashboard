@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from 'src/app/models/category';
+import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
   selector: 'app-new-post',
@@ -9,9 +11,13 @@ export class NewPostComponent implements OnInit {
   permalink:string=''
   imgSrc:any='./assets/placeholder-image.png'
   selectedImg:any
-  constructor(){}
+  categories!:any
+  constructor(private categoryService:CategoriesService){}
 
-  ngOnInit():void{}
+  ngOnInit():void{
+   this.categories = this.categoryService.loadData()
+   console.log(this.categories)
+  }
 
   onTitleChange(e:any){
 
