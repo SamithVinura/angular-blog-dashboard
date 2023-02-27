@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-post.component.css']
 })
 export class NewPostComponent implements OnInit {
+  permalink:string=''
   constructor(){}
 
   ngOnInit():void{}
@@ -13,8 +14,8 @@ export class NewPostComponent implements OnInit {
   onTitleChange(e:any){
 
     const title = e.target.value
-    let permalink = title.replace(/\s/g,'-')
-    console.log(permalink)
+    this.permalink = title.replace(/\s/g,'-')
+
   }
 
 }
