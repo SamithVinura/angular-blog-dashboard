@@ -7,3 +7,22 @@
   height: 250px;
 }
 
+input.ng-touched.ng-invalid {
+  border-color: red
+}
+select.ng-touched.ng-invalid {
+  border-color: red
+}
+textarea.ng-touched.ng-invalid {
+  border-color: red
+}
+.btn-sub{
+  height: 58px;
+  border: none;
+  font-variant: 13px;
+  color: white;
+  background-color: var(--primary-color);
+}
+.bg-theme{
+  background-color: var(--primary-color);
+}

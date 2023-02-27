@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class NewPostComponent implements OnInit {
       title:['',[Validators.required,Validators.minLength(10)]],
       permalink:['',Validators.required],
       excerpt:['',[Validators.required,Validators.maxLength(50)]],
-      category:['',Validators.required],
+      category:[''],
       postImg:['',Validators.required],
       content:['',Validators.required]
     })
@@ -27,7 +28,7 @@ export class NewPostComponent implements OnInit {
 
   ngOnInit():void{
    this.categories = this.categoryService.loadData()
-   console.log(this.categories)
+
   }
 
   get fc(){
@@ -49,6 +50,25 @@ export class NewPostComponent implements OnInit {
     }
 
     this.selectedImg = e.target.files[0]
+  }
+
+  onSubmit(){
+    console.log(this.postForm.value)
+     const postData:Post={
+      title:this.postForm.value.title,
+      permalink:this.permalink,
+      category:{
+        categoryId:'',
+        category:''
+      },
+      postImgPath:'',
+      excpert:this.postForm.value.excerpt,
+      content:this.postForm.value.content,
+      isFeatured:false,
+      views:0,
+      status:'new',
+      createAt:new Date()
+    }
   }
 
 }

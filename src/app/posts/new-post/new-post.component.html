@@ -5,7 +5,7 @@
       <p class="mb-5"> You can add your new post here</p>
     </div>
   </div>
-  <form [formGroup]="postForm">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-md-7">
         <div class="card shadow-effect">
@@ -30,7 +30,7 @@
             <div class="form-group">
               <label for="">Permalink</label>
               <input type="text" class="form-control" [(ngModel)]="permalink"
-                name="permalink" disabled>
+                name="permalink" [ngModelOptions]="{standalone: true}" disabled>
                 <div *ngIf="fc['permalink'].errors?.['required']">
                   <div class="alert alert-danger" *ngIf="fc['permalink'].touched &&
                     fc['permalink'].invalid ">
@@ -67,12 +67,12 @@
                 <option value="" disabled>-- Select --</option>
                 <option *ngFor="let category of categories |async" value="">{{category.category}}</option>
               </select>
-              <div *ngIf="fc['category'].errors?.['required']">
+              <!-- <div *ngIf="fc['category'].errors?.['required']">
                 <div class="alert alert-danger" *ngIf="fc['category'].touched &&
                   fc['category'].invalid ">
                   Category is required
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="form-group">
               <label for="">Post Image</label>
@@ -110,8 +110,8 @@
         </div>
       </div>
       <div class="col-md-12 text-center mb-5 mt-3">
-        <button class="btn btn-info bg-theme">Save Post</button>
-        <button class="btn btn-warning bg-theme ml-2" routerLink="/posts">Back
+        <button type="submit" class="btn btn-info bg-theme" >Save Post</button>
+        <button class="btn btn-warning ml-2" routerLink="/posts">Back
           to Post</button>
       </div>
     </div>
