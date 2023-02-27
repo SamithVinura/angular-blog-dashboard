@@ -10,13 +10,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 import { CategoriesComponent } from './categories/categories.component'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,10 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     ToastrModule.forRoot(),
-    ToastNoAnimationModule.forRoot()
+    ToastNoAnimationModule.forRoot(),
+    AngularEditorModule,
+    HttpClientModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
