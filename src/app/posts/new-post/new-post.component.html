@@ -30,7 +30,7 @@
             <div class="form-group">
               <label for="">Permalink</label>
               <input type="text" class="form-control" [(ngModel)]="permalink"
-                name="permalink" [ngModelOptions]="{standalone: true}" disabled>
+                name="permalink" [ngModelOptions]="{standalone: true}"  disabled >
                 <div *ngIf="fc['permalink'].errors?.['required']">
                   <div class="alert alert-danger" *ngIf="fc['permalink'].touched &&
                     fc['permalink'].invalid ">
@@ -65,7 +65,7 @@
               <label for="">Please Select a post category</label>
               <select class="form-control" formControlName="category">
                 <option value="" disabled>-- Select --</option>
-                <option *ngFor="let category of categories |async" value="">{{category.category}}</option>
+                <option *ngFor="let category of categories |async" value="{{category.id}}-{{category.category}}">{{category.category}}</option>
               </select>
               <!-- <div *ngIf="fc['category'].errors?.['required']">
                 <div class="alert alert-danger" *ngIf="fc['category'].touched &&

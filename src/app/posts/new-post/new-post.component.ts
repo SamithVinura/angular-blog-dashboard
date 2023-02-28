@@ -52,14 +52,18 @@ export class NewPostComponent implements OnInit {
     this.selectedImg = e.target.files[0]
   }
 
+
+
   onSubmit(){
-    console.log(this.postForm.value)
+
+   let splitted = this.postForm.value.category.split('-')
+   console.log(splitted)
      const postData:Post={
       title:this.postForm.value.title,
       permalink:this.permalink,
       category:{
-        categoryId:'',
-        category:''
+        categoryId:splitted[0],
+        category:splitted[1]
       },
       postImgPath:'',
       excpert:this.postForm.value.excerpt,
@@ -69,6 +73,7 @@ export class NewPostComponent implements OnInit {
       status:'new',
       createAt:new Date()
     }
+    console.log(postData)
   }
 
 }
