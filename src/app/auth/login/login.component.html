@@ -9,7 +9,7 @@
             <p>Please login to your admin account o post a new blog post</p>
           </div>
           <form #loginForm="ngForm"
-            (ngSubmit)="onSubmit(loginForm)">
+            (ngSubmit)="onSubmit(loginForm.value)">
             <div class="form-group">
               <input
               type="email"
@@ -39,6 +39,7 @@
               <div class="alert alert-danger" *ngIf="Password.touched && Password.invalid">Password is required</div>
             </div>
             <button
+            type="submit"
             class="btn btn-info btn-block btn-sub"
             [disabled]="loginForm.invalid"
             >Login</button>
