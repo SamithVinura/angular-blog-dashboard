@@ -37,7 +37,7 @@ export class PostsService {
       const docIns = doc(this.firestore,'posts',id)
     updateDoc(docIns,postData)
     .then((docRef) => {
-      this.toaster.success('Data Updated Successfully')
+      this.toaster.success('Post Updated Successfully')
       this.router.navigate(['/posts'])
     })
     .catch((err) => {
@@ -47,7 +47,7 @@ export class PostsService {
       const collectionIns = collection(this.firestore, 'posts');
       addDoc(collectionIns, postData)
         .then((docRef) => {
-          this.toaster.success('Data Insert Successfully');
+          this.toaster.success('Post Insert Successfully');
           this.router.navigate(['/posts'])
         })
         .catch((err) => {
@@ -62,11 +62,14 @@ export class PostsService {
     return collectionData(collectionIns,{idField:'id'})
   }
 
-  loadOneData(id:any){
-    const collectionIns = collection(this.firestore, 'posts',id);
-    return collectionData(collectionIns,{idField:'id'})
-
+  deletePostData(id:any){
+    const docIns = doc(this.firestore,'posts',id)
+    deleteDoc(docIns)
+    .then((docRef) => {
+      this.toaster.success('Post Deleted Successfully')
+    })
+    .catch((err) => {
+      console.log('error');
+    });
   }
-
-
 }

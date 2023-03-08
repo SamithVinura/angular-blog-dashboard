@@ -16,4 +16,8 @@ export class AllPostComponent implements OnInit {
 
   }
 
+  onDelete(id:any){
+    this.postService.deletePostData(id)
+    this.postService.loadData().subscribe(val=>this.postsArray=val)
+  }
 }

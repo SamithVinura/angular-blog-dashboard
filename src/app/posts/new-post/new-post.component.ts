@@ -26,17 +26,8 @@ export class NewPostComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.route.queryParams.subscribe((val1) => {
-      /* this.findObjectById(val['id']) */
-       this.id = val1['id'];
-     /* this.postService.loadData().subscribe((val2) => {
-        const foundObject = val2.find((post: any) => post.id === id);
-        this.postForm.controls['title'].setValue(foundObject);
-        console.log(foundObject)
-      }); */
-      /* this.postService.loadOneData(id) */
-
+           this.id = val1['id'];
     });
-    console.log(this.id)
     this.postService.loadData().subscribe((val2) => {
       const posts = val2
       const foundObject = posts.find((post: any) => post.id === this.id);
