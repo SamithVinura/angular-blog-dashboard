@@ -72,4 +72,15 @@ export class PostsService {
       console.log('error');
     });
   }
+
+  markFeatured(id:any,featuredData:any){
+    const docIns = doc(this.firestore,'posts',id)
+    updateDoc(docIns,featuredData)
+    .then((docRef) => {
+      this.toaster.info('Featured Status Updated')
+    })
+    .catch((err) => {
+      console.log('error');
+    });
+  }
 }

@@ -20,4 +20,11 @@ export class AllPostComponent implements OnInit {
     this.postService.deletePostData(id)
     this.postService.loadData().subscribe(val=>this.postsArray=val)
   }
+
+  onFeatured(id:any,value:boolean){
+    const featuredData ={
+      isFeatured:value
+    }
+    this.postService.markFeatured(id,featuredData)
+  }
 }
