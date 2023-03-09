@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   loggedIn:BehaviorSubject<boolean> =  new BehaviorSubject<boolean>(false)
+  isLoggedInGuard:boolean = false
 
   constructor(public auth:AngularFireAuth, private toaster:ToastrService,private router:Router) {  }
 
@@ -19,6 +20,7 @@ export class AuthService {
         this.router.navigate(['/'])
         this.loadUser()
         this.loggedIn.next(true)
+        this.isLoggedInGuard = true
       }
     ).catch(e=>{
       this.toaster.warning("Email or Password Incorrect")
@@ -37,6 +39,7 @@ export class AuthService {
       localStorage.removeItem('user')
       this.router.navigate(['/login'])
       this.loggedIn.next(false)
+      this.isLoggedInGuard = false
     })
   }
 
