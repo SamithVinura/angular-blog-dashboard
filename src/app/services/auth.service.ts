@@ -15,9 +15,16 @@ export class AuthService {
       logRef=>{
         this.toaster.success('Logged In Successfully')
         this.router.navigate([''])
+        this.loadUser()
       }
     ).catch(e=>{
       this.toaster.warning("Email or Password Incorrect")
+    })
+  }
+
+  loadUser(){
+    this.auth.authState.subscribe(user=>{
+      localStorage.setItem('user',JSON.stringify(user))
     })
   }
 }
