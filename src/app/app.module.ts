@@ -22,6 +22,7 @@ import { AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { SubscribersComponent } from './subscribers/subscribers.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     CategoriesComponent,
     AllPostComponent,
     NewPostComponent,
-    LoginComponent
+    LoginComponent,
+    SubscribersComponent
   ],
   imports: [
     BrowserModule,
