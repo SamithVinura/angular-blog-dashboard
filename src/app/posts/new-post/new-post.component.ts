@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PostsService } from 'src/app/services/posts.service';
@@ -19,6 +20,7 @@ export class NewPostComponent implements OnInit {
   post: any;
   id:any
   formStatus:string='Add New'
+
   constructor(
     private categoryService: CategoriesService,
     private fb: FormBuilder,
@@ -32,11 +34,10 @@ export class NewPostComponent implements OnInit {
       const posts = val2
       const foundObject = posts.find((post: any) => post.id === this.id);
       this.post = foundObject
-      console.log(this.post)
       this.postForm.controls['title'].setValue(this.post.title);
       this.postForm.controls['permalink'].setValue(this.post.permalink);
       this.postForm.controls['excerpt'].setValue(this.post.excpert);
-      this.postForm.controls['category'].setValue(`${this.post.category.id}-${this.post.category.category}`);
+      this.postForm.controls['category'].setValue(`${this.post.category.categoryId}-${this.post.category.category}`);
       this.postForm.controls['postImg'].setValue(this.post.postImg);
       this.postForm.controls['content'].setValue(this.post.content);
       this.imgSrc =this.post.postImgPath
@@ -46,7 +47,7 @@ export class NewPostComponent implements OnInit {
 
    this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(10)]],
-      permalink: ['', Validators.required],
+      permalink: [''],
       excerpt: ['', [Validators.required, Validators.maxLength(50)]],
       category: ['', Validators.required],
       postImg: ['', Validators.required],
@@ -56,6 +57,7 @@ export class NewPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories = this.categoryService.loadData();
+
   }
 
 
@@ -80,7 +82,7 @@ export class NewPostComponent implements OnInit {
 
   onSubmit() {
     let splitted = this.postForm.value.category.split('-');
-    console.log(splitted);
+
     const postData: Post = {
       title: this.postForm.value.title,
       permalink: this.permalink,
@@ -98,8 +100,6 @@ export class NewPostComponent implements OnInit {
     };
 
     this.postService.uploadImage(this.selectedImg, postData,this.formStatus,this.id);
-    console.log(postData);
-
     this.postForm.reset();
     this.imgSrc = './assets/placeholder-image.png';
   }

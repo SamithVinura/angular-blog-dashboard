@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-md-12 text-center">
       <h3 class="text-theme-primary">Add New Post</h3>
@@ -111,10 +112,10 @@
           </div>
         </div>
         <div class="col-md-12 text-center mb-5 mt-3">
-          <button type="submit" class="btn btn-info bg-theme" >{{formStatus}} Post</button>
+          <button type="submit" class="btn btn-info bg-theme" [disabled]="postForm.invalid">{{formStatus}} Post</button>
           <button class="btn btn-warning ml-2" routerLink="/posts">Back
             to Post</button>
-            {{postForm.invalid}}
+
         </div>
       </div>
     </form>

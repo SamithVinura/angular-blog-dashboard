@@ -11,10 +11,12 @@ import {
   deleteDoc,
 } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class PostsService {
+
   constructor(
     private storage:AngularFireStorage, private firestore: Firestore,
     private toaster: ToastrService,
@@ -25,7 +27,6 @@ export class PostsService {
     const filePath = `postIMG/${Date.now()}`;
 
      this.storage.upload(filePath,selectedImage).then(()=>{
-      console.log('Image add successfully')
       this.storage.ref(filePath).getDownloadURL().subscribe(url=>{
         postData.postImgPath = `${url}`
         if(formStatus == 'Edit'){
@@ -52,10 +53,6 @@ export class PostsService {
 
       })
     })
-   /*  postData.postImgPath =
-      'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8&w=1000&q=80'; */
-
-
   }
 
   loadData(){
